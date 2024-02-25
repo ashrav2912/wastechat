@@ -2,8 +2,8 @@ import streamlit as st
 import cohere
 
 st.set_page_config(layout='wide',page_title='Garbage image classification')
-def chatbot(model_answer):
-    st.title("Chatbot")
+def chatbot():
+    st.title("WasteBot Chat")
     co_api_key = st.secrets["CO_API_KEY"]  # Set Cohere API key
     co = cohere.Client(api_key=co_api_key)
 
@@ -17,7 +17,7 @@ def chatbot(model_answer):
             st.markdown(message["content"])
 
     # Accept user input
-    if prompt := st.chat_input("What do you want to know about " + model_answer+ "?"):
+    if prompt := st.chat_input("Ask me anything regarding waste management or waste impact"):
         # Add user message to chat history
         st.session_state.messages.append({"role": "user", "content": prompt})
         # Display user message in chat message container
@@ -40,4 +40,4 @@ def chatbot(model_answer):
  
 
 if __name__=="__main__":
-    chatbot("cardboard")
+    chatbot()
